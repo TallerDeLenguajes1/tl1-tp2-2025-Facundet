@@ -36,6 +36,7 @@ int main(void)
 
     listarPCs(computadoras, CANT_PC);
     mostrarMasVieja(computadoras, CANT_PC);
+    mostrarMasVeloz(computadoras, CANT_PC);
 
     getchar();
     getchar();
@@ -53,6 +54,7 @@ void listarPCs(struct compu computadoras[], int cantidad)
         printf("Cantidad de nucleos: %d\n", computadoras[i].cantidad_nucleos);
         printf("Tipo: %s\n", computadoras[i].tipo_cpu);
         printf("---------------------\n");
+        printf("---------------------\n\n");
     }
 }
 
@@ -74,8 +76,30 @@ void mostrarMasVieja(struct compu computadoras[], int cantidad)
             printf("Velocidad: %d GHz\n", computadoras[j].velocidad);
             printf("Cantidad de nucleos: %d\n", computadoras[j].cantidad_nucleos);
             printf("Tipo: %s\n", computadoras[j].tipo_cpu);
+            printf("---------------------\n");
+            printf("---------------------\n\n");
+
         }
     }
 }
 
-void mostrarMasVeloz(struct compu pcs[], int cantidad);
+void mostrarMasVeloz(struct compu computadoras[], int cantidad){
+
+    int masVeloz = 0;
+
+    for (int i = 0; i < cantidad; i++)
+    {
+        if (computadoras[i].velocidad > masVeloz)
+        {
+            masVeloz = computadoras[i].velocidad;
+        }
+    }
+    
+    for (int j = 0; j < cantidad; j++)
+    {
+        if (masVeloz == computadoras[j].velocidad)
+        {
+            printf("La computadora mas veloz es la PC Numero: %d\nVelocidad: %d GHz\nTipo: %s\n", j + 1, computadoras[j].velocidad, computadoras[j].tipo_cpu);
+        }   
+    }
+}
